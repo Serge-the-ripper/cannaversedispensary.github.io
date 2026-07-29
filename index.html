@@ -481,6 +481,18 @@
       .footer-top { grid-template-columns: 1fr; }
       .about-stats { flex-direction: column; gap: 1.5rem; }
     }
+    #cart-btn{
+    font-weight:600;
+}
+
+#cart-count{
+    background:#c9a84c;
+    color:#fff;
+    padding:2px 8px;
+    border-radius:20px;
+    margin-left:6px;
+    font-size:12px;
+}
   </style>
 </head>
 <body>
@@ -501,6 +513,7 @@
 <!-- ── NAV ── -->
 <nav>
   <a href="#" class="nav-logo">Canna<span>Verse</span></a>
+
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#categories">Shop</a></li>
@@ -508,13 +521,21 @@
     <li><a href="#location">Visit</a></li>
     <li><a href="#blog">Blog</a></li>
     <li><a href="#newsletter">Contact</a></li>
+
+    <!-- Shopping Cart -->
+    <li>
+      <a href="#" id="cart-btn">
+        🛒 Cart <span id="cart-count">0</span>
+      </a>
+    </li>
   </ul>
+
   <a href="#categories" class="nav-cta">Shop Now</a>
+
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
-
 <!-- ── HERO ── -->
 <section id="hero">
   <div class="hero-tag">Trenton's Newest Licensed Dispensary</div>
@@ -887,27 +908,68 @@
     setTimeout(() => gate.remove(), 600);
     sessionStorage.setItem('age-verified', '1');
   }
+
   if (sessionStorage.getItem('age-verified')) {
-    document.getElementById('age-gate').remove();
+    const gate = document.getElementById('age-gate');
+    if (gate) gate.remove();
   }
 
   function toggleMenu() {
     const links = document.querySelector('.nav-links');
     const cta = document.querySelector('.nav-cta');
+
     if (links.style.display === 'flex') {
       links.style.display = '';
       cta.style.display = '';
     } else {
-      links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:70px;left:0;width:100%;background:rgba(13,31,24,.97);padding:2rem;gap:1.5rem;z-index:99;';
-      cta.style.cssText = 'display:block;margin:0 2rem;text-align:center;';
+      links.style.cssText =
+        'display:flex;flex-direction:column;position:fixed;top:70px;left:0;width:100%;background:rgba(13,31,24,.97);padding:2rem;gap:1.5rem;z-index:99;';
+      cta.style.cssText =
+        'display:block;margin:0 2rem;text-align:center;';
     }
   }
 
-  // Scroll nav tint
+  // Navigation background
   window.addEventListener('scroll', () => {
     document.querySelector('nav').style.background =
-      window.scrollY > 60 ? 'rgba(8,18,14,.98)' : 'rgba(13,31,24,.92)';
+      window.scrollY > 60
+        ? 'rgba(8,18,14,.98)'
+        : 'rgba(13,31,24,.92)';
   });
+
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function updateCartCount() {
+    const count = document.getElementById('cart-count');
+    if (count) {
+      count.textContent = cart.length;
+    }
+  }
+
+  document.querySelectorAll('.prod-btn').forEach(button => {
+
+    button.addEventListener('click', function () {
+
+      const card = this.closest('.prod-card');
+
+      const product = {
+        name: card.querySelector('.prod-name').textContent,
+        price: card.querySelector('.prod-price').textContent
+      };
+
+      cart.push(product);
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      updateCartCount();
+
+      alert(product.name + " added to cart!");
+    });
+
+  });
+
+  updateCartCount();
+
 </script>
 </body>
 </html>
