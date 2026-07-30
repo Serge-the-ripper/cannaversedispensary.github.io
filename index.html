@@ -1079,48 +1079,6 @@
 
   });
 
-  // ==========================
-// PRODUCT DETAILS MODAL
-// ==========================
-
-const modal = document.getElementById("productModal");
-const modalImage = document.getElementById("modal-image");
-const modalName = document.getElementById("modal-name");
-const modalPrice = document.getElementById("modal-price");
-const modalDescription = document.getElementById("modal-description");
-const closeModal = document.querySelector(".close-modal");
-
-document.querySelectorAll(".view-btn").forEach(button => {
-
-    button.addEventListener("click", function () {
-
-        const card = this.closest(".prod-card");
-
-        const img = card.querySelector(".prod-img img");
-        const name = card.querySelector(".prod-name").textContent;
-        const price = card.querySelector(".prod-price").textContent;
-        const desc = card.querySelector(".prod-desc").textContent;
-
-        modalImage.src = img.src;
-        modalName.textContent = name;
-        modalPrice.textContent = price;
-        modalDescription.textContent = desc;
-
-        modal.style.display = "block";
-    });
-
-});
-
-closeModal.onclick = function () {
-    modal.style.display = "none";
-};
-
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-};
-
   updateCartCount();
 
 </script>
