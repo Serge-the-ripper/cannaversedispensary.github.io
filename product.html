@@ -186,6 +186,55 @@
       nav {
         padding: 0 20px;
       }
+
+      .quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(0,0,0,.08);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.quantity-label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: #1a3c2b;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.quantity-controls button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: #f7f7f7;
+  color: #1a3c2b;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.quantity-controls button:hover {
+  background: #1a3c2b;
+  color: #fff;
+}
+
+#quantity-value {
+  min-width: 42px;
+  text-align: center;
+  font-weight: 600;
+  color: #1a3c2b;
+}
     }
   </style>
 </head>
@@ -326,7 +375,7 @@ Order now 🔊"
         type: "Vape",
         size: "1g",
         price: "$38",
-        image: "image/lemon-haze.jpg",
+        image: "images/lemon-haze.jpg",
         description:
           "A citrus-forward product profile with bright lemon notes."
       },
@@ -337,7 +386,7 @@ Order now 🔊"
         type: "Edible",
         size: "10pk",
         price: "$22",
-        image: "image/gummies-bliss.jpg",
+        image: "images/gummies-bliss.jpg",
         description:
           "Watermelon-flavored edible product with individually portioned pieces."
       },
@@ -353,7 +402,7 @@ Order now 🔊"
          "A pre-roll product presented in a convenient five-piece format."
       },
 
-      "og-kush": {
+      "white runtz": {
         name: "White Runtz Live Resin 5g",
         category: "Indica Concentrate",
         type: "Concentrate",
@@ -397,6 +446,23 @@ Order now 🔊"
       } else {
         image.style.display = "none";
       }
+
+      const quantityValue = document.getElementById("quantity-value");
+      const quantityMinus = document.getElementById("quantity-minus");
+      const quantityPlus = document.getElementById("quantity-plus");
+
+      let quantity = 1;
+
+      quantityMinus.addEventListener("click", () => {
+      if (quantity > 1) {
+      quantity--;
+      quantityValue.textContent = quantity;
+      }
+      });
+
+      quantityPlus.addEventListener("click", () => {      quantity++;
+      quantityValue.textContent = quantity;
+      });
     }
 
   </script>
