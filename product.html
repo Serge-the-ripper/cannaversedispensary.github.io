@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CannaVerse | Product Details</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #1a3c2b;
+      --dark: #0d1f18;
+      --sage: #4a7c59;
+      --gold: #c9a84c;
+      --cream: #f5f0e8;
+      --offwhite: #faf8f4;
+      --text: #2a2a2a;
+      --muted: #707070;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--offwhite);
+      color: var(--text);
+    }
+
+    nav {
+      height: 72px;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+    }
+
+    .nav-logo {
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .back-link {
+      color: white;
+      text-decoration: none;
+      font-size: .9rem;
+      transition: .25s;
+    }
+
+    .back-link:hover {
+      color: var(--gold);
+    }
+
+    .product-page {
+      max-width: 1150px;
+      margin: 70px auto;
+      padding: 0 25px;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      background: white;
+      padding: 35px;
+      border-radius: 22px;
+      box-shadow: 0 15px 50px rgba(0,0,0,.08);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 18px;
+      background: var(--cream);
+    }
+
+    .product-category {
+      color: var(--sage);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .rating {
+      color: var(--gold);
+      letter-spacing: 3px;
+      margin-bottom: 22px;
+    }
+
+    .price {
+      color: var(--green);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .description {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .detail-box {
+      background: var(--cream);
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .detail-label {
+      display: block;
+      color: var(--muted);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 5px;
+    }
+
+    .detail-value {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .notice {
+      background: #f8f3e6;
+      border-left: 4px solid var(--gold);
+      padding: 15px;
+      border-radius: 8px;
+      color: #66582f;
+      font-size: .85rem;
+      line-height: 1.6;
+      margin-top: 25px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 100px 20px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 800px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 20px;
+      }
+
+      .product-image {
+        height: 380px;
+      }
+
+      .product-title {
+        font-size: 2.2rem;
+      }
+
+      nav {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      Canna<span>Verse</span>
+    </a>
+
+    <a href="index.html#products" class="back-link">
+      ← Back to Products
+    </a>
+  </nav>
+
+  <main class="product-page">
+
+    <div id="loading" class="loading">
+      Loading product...
+    </div>
+
+    <div id="product-container" class="product-container" style="display:none;">
+
+      <div>
+        <img id="product-image" class="product-image" src="" alt="">
+      </div>
+
+      <div>
+
+        <div id="product-category" class="product-category"></div>
+
+        <h1 id="product-name" class="product-title"></h1>
+
+        <div class="rating">
+          ★★★★★
+        </div>
+
+        <div id="product-price" class="price"></div>
+
+        <p id="product-description" class="description"></p>
+
+        <div class="details-grid">
+
+          <div class="detail-box">
+            <span class="detail-label">Product Type</span>
+            <span id="product-type" class="detail-value"></span>
+          </div>
+
+          <div class="detail-box">
+            <span class="detail-label">Size</span>
+            <span id="product-size" class="detail-value"></span>
+          </div>
+
+          <div class="detail-box">
+            <span class="detail-label">Availability</span>
+            <span class="detail-value">Check in store</span>
+          </div>
+
+          <div class="detail-box">
+            <span class="detail-label">Quality</span>
+            <span class="detail-value">Lab Tested</span>
+          </div>
+
+        </div>
+
+        <div class="notice">
+          Product information is provided for informational purposes.
+          Availability and applicable regulations may vary by location.
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+
+    const products = {
+
+      "blue-dream": {
+        name: "Blue Dream 3.5g",
+        category: "Hybrid Flower",
+        type: "Flower",
+        size: "3.5g",
+        price: "$42",
+        image: "images/06b03df4-1459-4c69-bd7e-27785dfdc69e.jpg",
+        description:
+          "A balanced flower profile with a sweet berry aroma and a combination of uplifting and relaxing characteristics."
+      },
+
+      "lemon-haze": {
+        name: "Lemon Haze Cart 1g",
+        category: "Sativa Vape",
+        type: "Vape",
+        size: "1g",
+        price: "$38",
+        image: "",
+        description:
+          "A citrus-forward product profile with bright lemon notes."
+      },
+
+      "watermelon-bliss": {
+        name: "Watermelon Bliss 10pk",
+        category: "Hybrid Edible",
+        type: "Edible",
+        size: "10pk",
+        price: "$22",
+        image: "",
+        description:
+          "Watermelon-flavored edible product with individually portioned pieces."
+      }
+
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("id");
+
+    const product = products[productId];
+
+    if (!product) {
+
+      document.getElementById("loading").innerHTML =
+        "<h2>Product not found</h2><br>" +
+        "<a href='index.html#products'>Return to products</a>";
+
+    } else {
+
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("product-container").style.display = "grid";
+
+      document.getElementById("product-name").textContent = product.name;
+      document.getElementById("product-category").textContent = product.category;
+      document.getElementById("product-type").textContent = product.type;
+      document.getElementById("product-size").textContent = product.size;
+      document.getElementById("product-price").textContent = product.price;
+      document.getElementById("product-description").textContent = product.description;
+
+      const image = document.getElementById("product-image");
+
+      if (product.image) {
+        image.src = product.image;
+        image.alt = product.name;
+      } else {
+        image.style.display = "none";
+      }
+    }
+
+  </script>
+
+</body>
+</html>
