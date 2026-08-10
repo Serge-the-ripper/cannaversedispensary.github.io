@@ -908,6 +908,307 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+    /* =====================================================
+   UPGRADE 6 — PRODUCT PAGE POLISH
+   ===================================================== */
+
+.product-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Product image */
+
+.product-image {
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+  display: block;
+  border-radius: 24px;
+  background: #f6f5f1;
+  box-shadow: 0 20px 60px rgba(0,0,0,.10);
+}
+
+/* Product information */
+
+.product-category {
+  margin-top: .5rem;
+  margin-bottom: .7rem;
+  color: #4a7c59;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.product-title {
+  margin: 0;
+  color: #1a3c2b;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.05;
+}
+
+.rating {
+  margin: 1.2rem 0;
+  color: #c9a84c;
+  font-size: 1.15rem;
+  letter-spacing: .12em;
+}
+
+.price {
+  margin: 1rem 0 1.5rem;
+  color: #1a3c2b;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.description {
+  max-width: 620px;
+  margin-bottom: 2rem;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Quantity */
+
+.quantity-wrapper {
+  margin: 2rem 0;
+}
+
+.quantity-label {
+  display: block;
+  margin-bottom: .7rem;
+  color: #555;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(26,60,43,.16);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.quantity-selector button {
+  width: 45px;
+  height: 45px;
+  border: 0;
+  background: #f6f5f1;
+  color: #1a3c2b;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.quantity-selector button:hover {
+  background: #1a3c2b;
+  color: #fff;
+}
+
+#quantity-value {
+  min-width: 50px;
+  text-align: center;
+  color: #1a3c2b;
+  font-weight: 700;
+}
+
+/* Detail boxes */
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.detail-box {
+  padding: 1.25rem;
+  border-radius: 14px;
+  background: #f7f5ef;
+}
+
+.detail-label {
+  display: block;
+  margin-bottom: .4rem;
+  color: #888;
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.detail-value {
+  display: block;
+  color: #1a3c2b;
+  font-size: .95rem;
+  font-weight: 700;
+}
+
+/* Notice */
+
+.notice {
+  margin-top: 2rem;
+  padding: 1.2rem 1.4rem;
+  border-left: 4px solid #c9a84c;
+  border-radius: 0 12px 12px 0;
+  background: #f8f4e8;
+  color: #6d6248;
+  font-size: .8rem;
+  line-height: 1.7;
+}
+
+/* Loading */
+
+.loading {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a3c2b;
+  font-weight: 600;
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+  .product-page {
+    padding: 3rem 1.25rem;
+  }
+
+  .product-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .product-image {
+    height: 500px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .product-page {
+    padding: 2rem 1rem;
+  }
+
+  .product-image {
+    height: 420px;
+    border-radius: 18px;
+  }
+
+  .product-title {
+    font-size: 2.5rem;
+  }
+
+  .price {
+    font-size: 1.8rem;
+  }
+
+  .description {
+    font-size: .92rem;
+  }
+
+  .details-grid {
+    gap: .7rem;
+  }
+
+  .detail-box {
+    padding: 1rem;
+  }
+
+  .detail-value {
+    font-size: .85rem;
+  }
+
+}
+
+@media (max-width: 420px) {
+
+  .product-image {
+    height: 350px;
+  }
+
+  .product-title {
+    font-size: 2.2rem;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+    /* ── PREMIUM PRODUCT ACTION ── */
+
+.product-actions {
+  display: flex;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.product-add-cart {
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: 30px;
+  background: #1a3c2b;
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(26,60,43,.16);
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.product-add-cart:hover {
+  background: #c9a84c;
+  color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.14);
+}
+
+.product-add-cart:active {
+  transform: translateY(0);
+}
+
+.cart-message {
+  min-height: 20px;
+  margin-top: .75rem;
+  color: #4a7c59;
+  font-size: .78rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+
+  .product-add-cart {
+    min-height: 52px;
+  }
+
+}
   </style>
 </head>
 
@@ -958,6 +1259,14 @@
          <button type="button" id="quantity-plus">+</button>
        </div>
        </div>
+
+        <div class="product-actions">
+  <button type="button" id="product-add-cart" class="product-add-cart">
+    Add to Cart
+  </button>
+</div>
+
+<div id="cart-message" class="cart-message"></div>
 
         <div class="details-grid">
 
@@ -1490,6 +1799,61 @@ if (averageElement && summaryStars && countElement) {
 
 }
 
+    /* ── PRODUCT PAGE ADD TO CART ── */
+
+const productAddCart =
+  document.getElementById("product-add-cart");
+
+const cartMessage =
+  document.getElementById("cart-message");
+
+if (productAddCart && product) {
+
+  productAddCart.addEventListener("click", () => {
+
+    const quantity =
+      Number(
+        document.getElementById("quantity-value")?.textContent
+      ) || 1;
+
+    let cart =
+      JSON.parse(localStorage.getItem("cart")) || [];
+
+    for (let i = 0; i < quantity; i++) {
+
+      cart.push({
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        productId: productId
+      });
+
+    }
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(cart)
+    );
+
+    if (cartMessage) {
+
+      cartMessage.textContent =
+        quantity === 1
+          ? `${product.name} added to your cart.`
+          : `${quantity} × ${product.name} added to your cart.`;
+
+    }
+
+    productAddCart.textContent = "Added to Cart ✓";
+
+    setTimeout(() => {
+      productAddCart.textContent = "Add to Cart";
+    }, 1800);
+
+  });
+
+}
+    
   </script>
 
 </body>
