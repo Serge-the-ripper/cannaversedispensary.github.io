@@ -508,6 +508,196 @@
   .back-link {
     font-size: .72rem;
   }
+   /* ── UPGRADE 4: REVIEWS ── */
+
+.reviews-section {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 4rem 2rem;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.reviews-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.reviews-eyebrow {
+  display: block;
+  margin-bottom: .5rem;
+  color: #4a7c59;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.reviews-header h2 {
+  margin: 0;
+  color: #1a3c2b;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+}
+
+.write-review-btn {
+  border: 1px solid #1a3c2b;
+  background: transparent;
+  color: #1a3c2b;
+  padding: .8rem 1.25rem;
+  border-radius: 30px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.write-review-btn:hover {
+  background: #1a3c2b;
+  color: #fff;
+}
+
+.reviews-summary {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8f7f3;
+  border-radius: 16px;
+}
+
+.rating-overview {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.average-rating {
+  color: #1a3c2b;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.large-stars,
+.review-stars {
+  color: #c9a84c;
+  letter-spacing: .12em;
+}
+
+.large-stars {
+  font-size: 1.1rem;
+}
+
+.review-count {
+  margin-top: .35rem;
+  color: #777;
+  font-size: .78rem;
+}
+
+.review-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.review-card {
+  padding: 1.5rem;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.05);
+}
+
+.review-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.review-top strong {
+  display: inline-block;
+  color: #1a3c2b;
+  font-size: .9rem;
+}
+
+.verified-review {
+  display: inline-block;
+  margin-left: .4rem;
+  padding: .2rem .45rem;
+  border-radius: 20px;
+  background: #edf5ef;
+  color: #4a7c59;
+  font-size: .6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.review-date {
+  color: #999;
+  font-size: .7rem;
+}
+
+.review-stars {
+  margin: 1rem 0 .75rem;
+  font-size: .85rem;
+}
+
+.review-card p {
+  margin: 0;
+  color: #666;
+  font-size: .85rem;
+  line-height: 1.7;
+}
+
+/* ── MOBILE REVIEWS ── */
+
+@media (max-width: 768px) {
+
+  .reviews-section {
+    margin-top: 3rem;
+    padding: 3rem 1.25rem;
+  }
+
+  .reviews-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .reviews-header h2 {
+    font-size: 1.9rem;
+  }
+
+  .review-list {
+    grid-template-columns: 1fr;
+  }
+
+  .write-review-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .reviews-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .rating-overview {
+    gap: .9rem;
+  }
+
+  .average-rating {
+    font-size: 2.5rem;
+  }
+
+  .review-top {
+    flex-direction: column;
+    gap: .4rem;
+  }
 }
   </style>
 </head>
@@ -587,6 +777,90 @@
         <div class="notice">
           Product information is provided for informational purposes.
           Availability and applicable regulations may vary by location.
+          <section class="reviews-section">
+
+  <div class="reviews-header">
+    <div>
+      <span class="reviews-eyebrow">Customer Feedback</span>
+      <h2>Customer Reviews</h2>
+    </div>
+
+    <button type="button" class="write-review-btn">
+      Write a Review
+    </button>
+  </div>
+
+  <div class="reviews-summary">
+
+    <div class="rating-overview">
+      <div class="average-rating">4.8</div>
+
+      <div>
+        <div class="large-stars">★★★★★</div>
+        <div class="review-count">Based on 24 reviews</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="review-list">
+
+    <article class="review-card">
+      <div class="review-top">
+        <div>
+          <strong>Alex M.</strong>
+          <span class="verified-review">Verified</span>
+        </div>
+
+        <span class="review-date">June 2026</span>
+      </div>
+
+      <div class="review-stars">★★★★★</div>
+
+      <p>
+        Great overall experience. The product information was clear and the
+        presentation was excellent.
+      </p>
+    </article>
+
+    <article class="review-card">
+      <div class="review-top">
+        <div>
+          <strong>Jordan K.</strong>
+          <span class="verified-review">Verified</span>
+        </div>
+
+        <span class="review-date">May 2026</span>
+      </div>
+
+      <div class="review-stars">★★★★☆</div>
+
+      <p>
+        Clean website, easy to navigate, and the product details were easy
+        to understand.
+      </p>
+    </article>
+
+    <article class="review-card">
+      <div class="review-top">
+        <div>
+          <strong>Sam R.</strong>
+          <span class="verified-review">Verified</span>
+        </div>
+
+        <span class="review-date">May 2026</span>
+      </div>
+
+      <div class="review-stars">★★★★★</div>
+
+      <p>
+        I liked how simple and organized the product page was.
+      </p>
+    </article>
+
+  </div>
+
+</section>
         </div>
 
       </div>
