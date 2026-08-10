@@ -1299,7 +1299,9 @@ if (reviewForm) {
     event.preventDefault();
 
     const name = document.getElementById("review-name").value.trim();
-    const rating = Number(document.getElementById("review-rating").value);
+    const rating = Number(
+      document.getElementById("review-rating").value
+    );
     const text = document.getElementById("review-text").value.trim();
 
     if (!name || !rating || !text) {
@@ -1307,9 +1309,38 @@ if (reviewForm) {
       return;
     }
 
-    const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+    const stars =
+      "★".repeat(rating) +
+      "☆".repeat(5 - rating);
+
+    const productKey =
+      new URLSearchParams(window.location.search).get("id") ||
+      "product";
+
+    const storageKey = "reviews-" + productKey;
+
+    const reviews =
+      JSON.parse(localStorage.getItem(storageKey)) || [];
+
+    const newReview = {
+      name: name,
+      rating: rating,
+      text: text,
+      date: new Date().toLocaleDateString("en-US", {
+        month: "short",
+        year: "numeric"
+      })
+    };
+
+    reviews.unshift(newReview);
+
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify(reviews)
+    );
 
     const reviewCard = document.createElement("article");
+
     reviewCard.className = "review-card";
 
     reviewCard.innerHTML = `
@@ -1319,15 +1350,20 @@ if (reviewForm) {
           <span class="customer-review">Customer</span>
         </div>
 
-        <span class="review-date">Just now</span>
+        <span class="review-date">
+          ${newReview.date}
+        </span>
       </div>
 
-      <div class="review-stars">${stars}</div>
+      <div class="review-stars">
+        ${stars}
+      </div>
 
       <p>${text}</p>
     `;
 
-    const reviewList = document.querySelector(".review-list");
+    const reviewList =
+      document.querySelector(".review-list");
 
     if (reviewList) {
       reviewList.prepend(reviewCard);
