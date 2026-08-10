@@ -1292,6 +1292,59 @@ if (reviewModal) {
 
 }
 
+
+/* ── LOAD SAVED REVIEWS ── */
+
+const productKey =
+  new URLSearchParams(window.location.search).get("id") ||
+  "product";
+
+const storageKey = "reviews-" + productKey;
+
+const savedReviews =
+  JSON.parse(localStorage.getItem(storageKey)) || [];
+
+const reviewList =
+  document.querySelector(".review-list");
+
+if (reviewList && savedReviews.length > 0) {
+
+  savedReviews.slice().reverse().forEach(review => {
+
+    const stars =
+      "★".repeat(review.rating) +
+      "☆".repeat(5 - review.rating);
+
+    const reviewCard =
+      document.createElement("article");
+
+    reviewCard.className = "review-card";
+
+    reviewCard.innerHTML = `
+      <div class="review-top">
+        <div>
+          <strong>${review.name}</strong>
+          <span class="customer-review">Customer</span>
+        </div>
+
+        <span class="review-date">
+          ${review.date}
+        </span>
+      </div>
+
+      <div class="review-stars">
+        ${stars}
+      </div>
+
+      <p>${review.text}</p>
+    `;
+
+    reviewList.prepend(reviewCard);
+
+  });
+
+}
+
 if (reviewForm) {
 
   reviewForm.addEventListener("submit", (event) => {
