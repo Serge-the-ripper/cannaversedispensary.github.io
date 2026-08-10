@@ -896,6 +896,18 @@
     font-size: 1.7rem;
   }
 }
+
+    .customer-review {
+  display: inline-block;
+  margin-left: .4rem;
+  padding: .2rem .45rem;
+  border-radius: 20px;
+  background: #f4f1e8;
+  color: #806b2d;
+  font-size: .6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
   </style>
 </head>
 
@@ -1286,10 +1298,45 @@ if (reviewForm) {
 
     event.preventDefault();
 
-    alert("Thank you for your review!");
+    const name = document.getElementById("review-name").value.trim();
+    const rating = Number(document.getElementById("review-rating").value);
+    const text = document.getElementById("review-text").value.trim();
+
+    if (!name || !rating || !text) {
+      alert("Please complete all review fields.");
+      return;
+    }
+
+    const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+
+    const reviewCard = document.createElement("article");
+    reviewCard.className = "review-card";
+
+    reviewCard.innerHTML = `
+      <div class="review-top">
+        <div>
+          <strong>${name}</strong>
+          <span class="customer-review">Customer</span>
+        </div>
+
+        <span class="review-date">Just now</span>
+      </div>
+
+      <div class="review-stars">${stars}</div>
+
+      <p>${text}</p>
+    `;
+
+    const reviewList = document.querySelector(".review-list");
+
+    if (reviewList) {
+      reviewList.prepend(reviewCard);
+    }
 
     reviewForm.reset();
     reviewModal.classList.remove("active");
+
+    alert("Thank you! Your review has been added.");
 
   });
 
