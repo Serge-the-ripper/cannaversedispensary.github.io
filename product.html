@@ -999,16 +999,21 @@
     </button>
   </div>
 
-  <div class="reviews-summary">
+  <div class="review-summary">
 
-    <div class="rating-overview">
-      <div class="average-rating">4.8</div>
+  <div class="review-average" id="review-average">
+    0.0
+  </div>
 
-      <div>
-        <div class="large-stars">★★★★★</div>
-        <div class="review-count">Based on 24 reviews</div>
-      </div>
-    </div>
+  <div class="review-summary-stars" id="review-summary-stars">
+    ☆☆☆☆☆
+  </div>
+
+  <div class="review-count" id="review-count">
+    Based on 0 reviews
+  </div>
+
+</div>
 
   </div>
 
@@ -1428,6 +1433,60 @@ if (reviewForm) {
     alert("Thank you! Your review has been added.");
 
   });
+
+}
+    /* ── DYNAMIC REVIEW SUMMARY ── */
+
+const averageElement =
+  document.getElementById("review-average");
+
+const summaryStars =
+  document.getElementById("review-summary-stars");
+
+const countElement =
+  document.getElementById("review-count");
+
+if (averageElement && summaryStars && countElement) {
+
+  const reviews =
+    JSON.parse(localStorage.getItem(storageKey)) || [];
+
+  if (reviews.length === 0) {
+
+    averageElement.textContent = "0.0";
+    summaryStars.textContent = "☆☆☆☆☆";
+    countElement.textContent = "Based on 0 reviews";
+
+  } else {
+
+    const totalRating =
+      reviews.reduce(
+        (total, review) => total + Number(review.rating),
+        0
+      );
+
+    const average =
+      totalRating / reviews.length;
+
+    const roundedAverage =
+      Math.round(average * 10) / 10;
+
+    const fullStars =
+      Math.round(average);
+
+    const stars =
+      "★".repeat(fullStars) +
+      "☆".repeat(5 - fullStars);
+
+    averageElement.textContent =
+      roundedAverage.toFixed(1);
+
+    summaryStars.textContent = stars;
+
+    countElement.textContent =
+      `Based on ${reviews.length} review${reviews.length === 1 ? "" : "s"}`;
+
+  }
 
 }
 
