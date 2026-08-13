@@ -109,20 +109,24 @@
     }
 
     .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: .9rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      outline: none;
-      font: inherit;
+    .form-group textarea,
+    .form-group select {
+       width: 100%;
+       padding: .9rem 1rem;
+       border: 1px solid #ddd;
+       border-radius: 10px;
+       outline: none;
+       font: inherit;
+       background: #fff;
+       color: #333;
     }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: #4a7c59;
+    
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+         border-color: #4a7c59;
     }
-
+    
     .order-item {
       display: flex;
       justify-content: space-between;
@@ -336,6 +340,84 @@
   color: #1a1a1a;
 }
 
+    /* ================================
+   PAYMENT METHOD
+================================ */
+
+.payment-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.payment-section h2 {
+  margin: 0 0 1rem;
+  color: #1a3c2b;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+}
+
+.payment-methods {
+  display: grid;
+  gap: .7rem;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+
+  padding: 1rem;
+
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+
+  background: #fff;
+
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.payment-option:hover {
+  border-color: #4a7c59;
+  background: #fafbf8;
+}
+
+.payment-option input {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: #1a3c2b;
+}
+
+.payment-option span {
+  color: #1a3c2b;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.payment-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 1.5rem;
+  padding: 1.2rem 0;
+
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.payment-total span {
+  color: #666;
+  font-size: .85rem;
+}
+
+.payment-total strong {
+  color: #1a3c2b;
+  font-size: 1.35rem;
+}
+
   </style>
 </head>
 
@@ -376,72 +458,128 @@
 
         <form id="checkout-form">
 
-          <div class="form-group">
+         <div class="form-group">
+  <label for="customer-name">Full Name</label>
+  <input
+    id="customer-name"
+    type="text"
+    placeholder="Enter your full name"
+    required
+  >
+</div>
 
-            <label for="customer-name">
-              Full Name
-            </label>
+<div class="form-group">
+  <label for="customer-email">Email Address</label>
+  <input
+    id="customer-email"
+    type="email"
+    placeholder="you@example.com"
+    required
+  >
+</div>
 
-            <input
-              id="customer-name"
-              type="text"
-              required
-            >
+<div class="form-group">
+  <label for="customer-phone">Phone Number</label>
+  <input
+    id="customer-phone"
+    type="tel"
+    placeholder="Enter your phone number"
+    required
+  >
+</div>
 
-          </div>
+<div class="form-group">
+  <label for="customer-city">City / General Location</label>
+  <input
+    id="customer-city"
+    type="text"
+    placeholder="City or general area"
+    required
+  >
+</div>
 
+<div class="form-group">
+  <label for="contact-method">Preferred Contact Method</label>
 
-          <div class="form-group">
+  <select id="contact-method" required>
+    <option value="">Select a method</option>
+    <option value="email">Email</option>
+    <option value="phone">Phone</option>
+  </select>
+</div>
 
-            <label for="customer-email">
-              Email Address
-            </label>
+<div class="form-group">
+  <label for="store-location">Preferred Store / General Location</label>
 
-            <input
-              id="customer-email"
-              type="email"
-              required
-            >
+  <select id="store-location">
+    <option value="">Select a location</option>
+    <option value="main-store">Main Store</option>
+    <option value="north-location">North Location</option>
+    <option value="south-location">South Location</option>
+  </select>
+</div>
 
-          </div>
+<div class="form-group">
+  <label for="customer-note">Order / Inquiry Notes</label>
 
+  <textarea
+    id="customer-note"
+    rows="4"
+    placeholder="Tell us anything you'd like us to know..."
+  ></textarea>
+</div>
 
-          <div class="form-group">
+          <div class="payment-section">
 
-            <label for="customer-phone">
-              Phone Number
-            </label>
+  <h2>Payment Method</h2>
 
-            <input
-              id="customer-phone"
-              type="tel"
-              required
-            >
+  <div class="payment-methods">
 
-          </div>
+    <label class="payment-option">
+      <input type="radio" name="payment-method" value="bitcoin" required>
+      <span>Bitcoin</span>
+    </label>
 
+    <label class="payment-option">
+      <input type="radio" name="payment-method" value="cashapp">
+      <span>Cash App</span>
+    </label>
 
-          <div class="form-group">
+    <label class="payment-option">
+      <input type="radio" name="payment-method" value="zelle">
+      <span>Zelle</span>
+    </label>
 
-            <label for="customer-note">
-              Order Note
-            </label>
+    <label class="payment-option">
+      <input type="radio" name="payment-method" value="venmo">
+      <span>Venmo</span>
+    </label>
 
-            <textarea
-              id="customer-note"
-              rows="4"
-              placeholder="Optional"
-            ></textarea>
+    <label class="payment-option">
+      <input type="radio" name="payment-method" value="etransfer">
+      <span>E-Transfer</span>
+    </label>
 
-          </div>
+    <label class="payment-option">
+      <input type="radio" name="payment-method" value="gift-card">
+      <span>Gift Card</span>
+    </label>
 
+  </div>
 
-          <button
-            type="submit"
-            class="place-order"
-          >
-            Place Order
-          </button>
+  <div class="payment-total">
+    <span>Amount Due</span>
+    <strong id="payment-amount">$0.00</strong>
+  </div>
+
+</div>
+
+<button
+  type="submit"
+  class="place-order"
+>
+  Submit Inquiry
+</button>
 
         </form>
 
