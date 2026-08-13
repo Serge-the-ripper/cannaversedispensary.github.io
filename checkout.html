@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Checkout | CannaVerse</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f6f5f1;
+      color: #1a3c2b;
+      font-family: 'Inter', sans-serif;
+    }
+
+    nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      background: #0d1f18;
+    }
+
+    .nav-logo {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+    }
+
+    .nav-logo span {
+      color: #c9a84c;
+    }
+
+    .back-link {
+      color: #fff;
+      text-decoration: none;
+      font-size: .8rem;
+    }
+
+    .checkout-page {
+      width: min(1100px, 92%);
+      margin: 4rem auto;
+    }
+
+    .checkout-heading {
+      margin-bottom: 2rem;
+    }
+
+    .checkout-heading small {
+      color: #4a7c59;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .checkout-heading h1 {
+      margin: .4rem 0 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.7rem;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 2rem;
+    }
+
+    .checkout-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 2rem;
+      border: 1px solid rgba(0,0,0,.07);
+      box-shadow: 0 10px 35px rgba(0,0,0,.06);
+    }
+
+    .checkout-card h2 {
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: .45rem;
+      font-size: .75rem;
+      font-weight: 700;
+      color: #444;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: .9rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      font: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #4a7c59;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .order-item-name {
+      font-weight: 600;
+      font-size: .85rem;
+    }
+
+    .order-item-qty {
+      color: #777;
+      font-size: .75rem;
+      margin-top: .25rem;
+    }
+
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 2px solid #eee;
+      font-weight: 700;
+    }
+
+    .place-order {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border: 0;
+      border-radius: 30px;
+      background: #1a3c2b;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .place-order:hover {
+      background: #c9a84c;
+      color: #1a1a1a;
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #777;
+    }
+
+    @media (max-width: 800px) {
+
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-heading h1 {
+        font-size: 2.2rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav>
+
+    <a href="index.html" class="nav-logo">
+      Canna<span>Verse</span>
+    </a>
+
+    <a href="index.html#products" class="back-link">
+      ← Back to Products
+    </a>
+
+  </nav>
+
+
+  <main class="checkout-page">
+
+    <div class="checkout-heading">
+
+      <small>CannaVerse</small>
+
+      <h1>Checkout</h1>
+
+    </div>
+
+
+    <div class="checkout-grid">
+
+
+      <!-- CUSTOMER INFORMATION -->
+
+      <section class="checkout-card">
+
+        <h2>Customer Information</h2>
+
+        <form id="checkout-form">
+
+          <div class="form-group">
+
+            <label for="customer-name">
+              Full Name
+            </label>
+
+            <input
+              id="customer-name"
+              type="text"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="customer-email">
+              Email Address
+            </label>
+
+            <input
+              id="customer-email"
+              type="email"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="customer-phone">
+              Phone Number
+            </label>
+
+            <input
+              id="customer-phone"
+              type="tel"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="customer-note">
+              Order Note
+            </label>
+
+            <textarea
+              id="customer-note"
+              rows="4"
+              placeholder="Optional"
+            ></textarea>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="place-order"
+          >
+            Place Order
+          </button>
+
+        </form>
+
+      </section>
+
+
+      <!-- ORDER SUMMARY -->
+
+      <section class="checkout-card">
+
+        <h2>Your Order</h2>
+
+        <div id="order-items"></div>
+
+        <div class="order-total">
+
+          <span>Total</span>
+
+          <strong id="order-total">
+            $0.00
+          </strong>
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    const cart =
+      JSON.parse(
+        localStorage.getItem('cart')
+      ) || [];
+
+
+    const orderItems =
+      document.getElementById(
+        'order-items'
+      );
+
+    const orderTotal =
+      document.getElementById(
+        'order-total'
+      );
+
+
+    /* GROUP PRODUCTS */
+
+    const grouped = {};
+
+
+    cart.forEach(item => {
+
+      const key =
+        item.productId ||
+        item.name;
+
+      if (!grouped[key]) {
+
+        grouped[key] = {
+          ...item,
+          quantity: 0
+        };
+
+      }
+
+      grouped[key].quantity++;
+
+    });
+
+
+    let total = 0;
+
+
+    Object.values(grouped)
+      .forEach(item => {
+
+        const price =
+          parseFloat(
+            String(item.price)
+              .replace('$', '')
+              .replace(',', '')
+          ) || 0;
+
+        const itemTotal =
+          price * item.quantity;
+
+        total += itemTotal;
+
+
+        const row =
+          document.createElement('div');
+
+        row.className =
+          'order-item';
+
+        row.innerHTML = `
+          <div>
+
+            <div class="order-item-name">
+              ${item.name}
+            </div>
+
+            <div class="order-item-qty">
+              Quantity: ${item.quantity}
+            </div>
+
+          </div>
+
+          <strong>
+            $${itemTotal.toFixed(2)}
+          </strong>
+        `;
+
+        orderItems.appendChild(row);
+
+      });
+
+
+    if (cart.length === 0) {
+
+      orderItems.innerHTML = `
+        <div class="empty-message">
+          Your cart is empty.<br><br>
+          <a href="index.html#products">
+            Return to products
+          </a>
+        </div>
+      `;
+
+    }
+
+
+    orderTotal.textContent =
+      '$' + total.toFixed(2);
+
+
+    /* ORDER FORM */
+
+    document
+      .getElementById('checkout-form')
+      .addEventListener(
+        'submit',
+        function(event) {
+
+          event.preventDefault();
+
+          if (cart.length === 0) {
+
+            alert(
+              'Your cart is empty.'
+            );
+
+            return;
+
+          }
+
+          alert(
+            'Your order has been prepared successfully.'
+          );
+
+        }
+      );
+
+  </script>
+
+</body>
+</html>
