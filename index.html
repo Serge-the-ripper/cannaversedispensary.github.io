@@ -1183,14 +1183,19 @@
 
 .checkout-btn {
   width: 100%;
-
   min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   border: 0;
   border-radius: 30px;
 
   background: #1a3c2b;
   color: #fff;
+
+  text-decoration: none;
 
   font-size: .75rem;
   font-weight: 700;
@@ -1295,6 +1300,7 @@
   white-space: nowrap;
 }
     
+    
   </style>
 </head>
 <body>
@@ -1389,26 +1395,26 @@
 
   </div>
 
-  <div class="cart-footer">
+ <div class="cart-footer">
 
-    <div class="cart-subtotal">
-      <span>Subtotal</span>
-      <strong id="cart-subtotal">$0.00</strong>
-    </div>
-
-    <button
-      type="button"
-      id="checkout-btn"
-      class="checkout-btn"
-    >
-      Proceed to Checkout
-    </button>
-
-    <p class="cart-note">
-      Final availability and applicable requirements are confirmed at checkout.
-    </p>
-
+  <div class="cart-subtotal">
+    <span>Subtotal</span>
+    <strong id="cart-subtotal">$0.00</strong>
   </div>
+
+  <a
+    href="checkout.html"
+    id="checkout-btn"
+    class="checkout-btn"
+  >
+    Proceed to Checkout
+  </a>
+
+  <p class="cart-note">
+    Final availability and applicable requirements may vary by location.
+  </p>
+
+</div>
 
 </aside>
 <!-- ── HERO ── -->
