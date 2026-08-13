@@ -186,6 +186,156 @@
 
     }
 
+    /* ── ORDER CONFIRMATION ── */
+
+.order-confirmation {
+  display: none;
+
+  max-width: 650px;
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+
+  background: #fff;
+  border-radius: 22px;
+
+  text-align: center;
+
+  border: 1px solid rgba(0,0,0,.07);
+  box-shadow: 0 15px 50px rgba(0,0,0,.08);
+}
+
+.order-confirmation.active {
+  display: block;
+}
+
+.confirmation-icon {
+  width: 60px;
+  height: 60px;
+
+  margin: 0 auto 1.2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #1a3c2b;
+  color: #fff;
+
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.order-confirmation small {
+  color: #4a7c59;
+
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.order-confirmation small span {
+  color: #c9a84c;
+}
+
+.order-confirmation h2 {
+  margin: .5rem 0;
+
+  color: #1a3c2b;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+}
+
+.order-confirmation > p {
+  max-width: 480px;
+
+  margin: 0 auto 2rem;
+
+  color: #777;
+
+  line-height: 1.7;
+}
+
+.reference-box {
+  padding: 1.2rem;
+
+  border-radius: 12px;
+
+  background: #f6f5f1;
+}
+
+.reference-box span,
+.confirmation-total span {
+  display: block;
+
+  margin-bottom: .35rem;
+
+  color: #777;
+
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.reference-box strong {
+  color: #1a3c2b;
+
+  font-size: 1.3rem;
+  letter-spacing: .12em;
+}
+
+.confirmation-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 1.5rem 0;
+
+  padding: 1rem 0;
+
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.confirmation-total span {
+  margin: 0;
+}
+
+.confirmation-total strong {
+  color: #1a3c2b;
+  font-size: 1.2rem;
+}
+
+.continue-shopping-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 50px;
+
+  border-radius: 30px;
+
+  background: #1a3c2b;
+  color: #fff;
+
+  text-decoration: none;
+
+  font-size: .75rem;
+  font-weight: 700;
+
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  transition: .25s ease;
+}
+
+.continue-shopping-btn:hover {
+  background: #c9a84c;
+  color: #1a1a1a;
+}
+
   </style>
 </head>
 
@@ -197,9 +347,9 @@
       Canna<span>Verse</span>
     </a>
 
-    <a href="index.html#products" class="back-link">
-      ← Back to Products
-    </a>
+   <a href="index.html#products" class="back-link">
+  ← Continue Shopping
+</a>
 
   </nav>
 
@@ -321,9 +471,53 @@
 
     </div>
 
+    <div id="order-confirmation" class="order-confirmation">
+
+  <div class="confirmation-icon">
+    ✓
+  </div>
+
+  <small>CANNA<span>VERSE</span></small>
+
+  <h2>Order Prepared</h2>
+
+  <p>
+    Thank you. Your order information has been received
+    and is ready for the next step.
+  </p>
+
+  <div class="reference-box">
+
+    <span>Order Reference</span>
+
+    <strong id="confirmation-reference">
+      —
+    </strong>
+
+  </div>
+
+  <div class="confirmation-total">
+
+    <span>Order Total</span>
+
+    <strong id="confirmation-total">
+      $0.00
+    </strong>
+
+  </div>
+
+  <a
+    href="index.html#products"
+    class="continue-shopping-btn"
+  >
+    Continue Shopping
+  </a>
+
+</div>
+
   </main>
 
-
+    
   <script>
 
     const cart =
@@ -437,29 +631,58 @@
     /* ORDER FORM */
 
     document
-      .getElementById('checkout-form')
-      .addEventListener(
-        'submit',
-        function(event) {
+  .getElementById('checkout-form')
+  .addEventListener(
+    'submit',
+    function(event) {
 
-          event.preventDefault();
+      event.preventDefault();
 
-          if (cart.length === 0) {
+      if (cart.length === 0) {
 
-            alert(
-              'Your cart is empty.'
-            );
+        alert('Your cart is empty.');
+        return;
 
-            return;
+      }
 
-          }
+      const characters =
+        'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
-          alert(
-            'Your order has been prepared successfully.'
+      let reference = 'CV-';
+
+      for (let i = 0; i < 6; i++) {
+        reference +=
+          characters.charAt(
+            Math.floor(
+              Math.random() * characters.length
+            )
           );
+      }
 
-        }
-      );
+     document.getElementById(
+  'confirmation-reference'
+).textContent = reference;
+
+document.getElementById(
+  'confirmation-total'
+).textContent =
+  '$' + total.toFixed(2);
+
+document.querySelector(
+  '.checkout-grid'
+).style.display = 'none';
+
+document.getElementById(
+  'order-confirmation'
+).classList.add('active');
+
+window.scrollTo({
+  top: 0,
+  behavior: 'smooth'
+});
+
+    }
+  );
 
   </script>
 
