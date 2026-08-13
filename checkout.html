@@ -634,6 +634,11 @@
 
   </div>
 
+      <div class="confirmation-detail">
+  <span>Payment Method</span>
+  <strong id="confirmation-payment">—</strong>
+</div>
+
   <div class="confirmation-total">
 
     <span>Order Total</span>
@@ -776,6 +781,28 @@
 
       event.preventDefault();
 
+      const selectedPayment =
+  document.querySelector(
+    'input[name="payment-method"]:checked'
+  );
+
+if (!selectedPayment) {
+  alert('Please select a payment method.');
+  return;
+}
+
+const paymentNames = {
+  bitcoin: 'Bitcoin',
+  cashapp: 'Cash App',
+  zelle: 'Zelle',
+  venmo: 'Venmo',
+  etransfer: 'E-Transfer',
+  'gift-card': 'Gift Card'
+};
+
+const paymentMethod =
+  paymentNames[selectedPayment.value];
+
       if (cart.length === 0) {
 
         alert('Your cart is empty.');
@@ -805,6 +832,11 @@ document.getElementById(
   'confirmation-total'
 ).textContent =
   '$' + total.toFixed(2);
+
+      document.getElementById(
+  'confirmation-payment'
+).textContent =
+  paymentMethod;
 
 document.querySelector(
   '.checkout-grid'
